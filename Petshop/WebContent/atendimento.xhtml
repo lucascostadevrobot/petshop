@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+<h:head>
+
+<link rel="preconnect" href="https://fonts.gstatic.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet"/>
+
+<style>
+/*DEFINIÇÃO ROOT*/
+*{
+	font-family: Roboto;
+	margin: 0 auto;
+	background: #F0FFF0;
+}
+/*INICIALIZANDO FORMULÁRIO*/
+.form{
+	width: 350px;
+	height: 350px;
+	margin: 0 auto;
+	
+	margin-top: 200px;
+}
+.input{
+	width: 200px;
+    height: 30px; 
+	border-radius: 10px;
+	
+    outline: 0;
+	
+}
+.label{
+    margin: 0 auto;
+    margin-top: 200px;
+    
+}
+.button{
+    width: 200px;
+    height: 30px; 
+	border-radius: 10px;
+	margin-right: 40px;
+	
+    outline: 0;
+}
+.combox{
+    width: 200px;
+    height: 30px; 
+	border-radius: 10px;
+	outline: 0;
+	
+}
+/*INICIALIZANDO TABELA*/
+/*PANEL GRID TABELA*/
+table {
+  border-collapse: collapse;
+  width: 50em;
+  border: 1px solid #666;
+  }
+  
+  /*PANEL GRID FORMULÁRIO*/
+ .table2{
+ 
+  margin-left: -227px;
+
+ }
+thead {
+  background: #ccc url(https://www.devfuria.com.br/html-css/tabelas/bar.gif) repeat-x left center;
+  border-top: 1px solid #a5a5a5;
+  border-bottom: 1px solid #a5a5a5;
+}
+tr:hover {
+  background-color:#3d80df;
+  /*color: #fff;*/
+}
+thead tr:hover {
+  background-color: transparent;
+  color: inherit;
+}
+tr:nth-child(even) {
+    background-color: #edf5ff;
+}
+th {
+  font-weight: normal;
+  text-align: left;
+}
+th, td {
+  padding: 0.1em 1em;
+}
+
+/*Menu*/
+#menu ul {
+    padding:0px;
+    margin:0px;
+    background-color:#EDEDED;
+    list-style:none;
+}
+
+#menu ul li { display: inline; }
+
+
+#menu ul li a {
+    padding: 2px 10px;
+    display: inline-block;
+
+    /* visual do link */
+    background-color:#EDEDED;
+    color: #333;
+    text-decoration: none;
+    border-bottom:3px solid #EDEDED;
+}
+
+#menu ul li a:hover {
+    background-color:#D6D6D6;
+    color: #6D6D6D;
+    border-bottom:3px solid #51d4db;
+}
+</style>
+</h:head> 
+<body> 
+<!-- Menu -->
+<div id="menu">
+    <ul>
+        <li><a href="index.xhtml">Home</a></li>
+        <li><a href="cliente.xhtml">Cadastro Cliente</a></li>
+        <li><a href="animal.xhtml">Cadastro de Animais</a></li>
+        <li><a href="atendimento.xhtml">Registrar Atendimento</a></li>
+    </ul>
+</div>
+<!-- Formulário de Cadastro -->
+  <h:form>
+  <div class="form">
+  <h:messages></h:messages>
+  <h:panelGrid styleClass="table2" >
+  <h:outputLabel value="Descrição do Atendimento" styleClass="label"></h:outputLabel>
+  <h:inputText value="#{atendimentoBean.atendimento.descricao}" required="true" requiredMessage="Este campo é obrigatório!"  styleClass="input"></h:inputText>
+  
+  <h:outputLabel value="Valor da consulta:" styleClass="label"></h:outputLabel>
+  <h:inputText value="#{atendimentoBean.atendimento.valor}" required="true" requiredMessage="Este campo é obrigatório!"  styleClass="input" ></h:inputText>
+  
+  <h:outputLabel value="Animal:" styleClass="label"></h:outputLabel>
+  <h:selectOneMenu value="#{atendimentoBean.idAnimal}" styleClass="combox">
+  <f:selectItem itemLabel="Escolha uma opção" itemValue="0"></f:selectItem>
+  <f:selectItems value="#{atendimentoBean.animais}" var="animalAtual" itemLabel="#{animalAtual.nomeAnimal}" itemValue="#{animalAtual.id}"></f:selectItems>
+  </h:selectOneMenu>
+  <h:commandButton action="#{atendimentoBean.salvarAtendimento()}" value="Cadastrar o Atendimento" styleClass="button" />
+  </h:panelGrid>
+  </div>
+  </h:form>
+  
+  
+  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+ <!-- Formulário de Tabela -->
+  <h:form>
+  <h:dataTable value="#{atendimentoBean.atendimentos}" var="atendimentoAtual" border="2">
+  <h:column>
+  <f:facet name="header">Valor Consulta</f:facet>
+  <h:outputText value="#{atendimentoAtual.valor}" />
+  </h:column>
+  
+  <h:column>
+  <f:facet name="header">Animal</f:facet>
+  <h:outputText value="#{atendimentoAtual.animalAtendido.nomeAnimal}" />
+  </h:column>
+  
+  <h:column>
+  <f:facet name="header">Dono do Animal</f:facet>
+  <h:outputText value="#{atendimentoAtual.animalAtendido.dono.nomeCliente}" />
+  </h:column>
+  
+  <h:column>
+  <f:facet name="header">CPF Do Dono</f:facet>
+  <h:outputText value="#{atendimentoAtual.animalAtendido.dono.cpfCliente}" />
+  </h:column>
+  
+  <h:column>
+  <f:facet name="header">Cadastrar ATE</f:facet>
+  <h:commandButton action="#{atendimentoBean.excluindoAtendimento(atendimentoAtual)}" value="Remover" />
+  </h:column>
+  
+  </h:dataTable>
+  </h:form>
+</body> 
+</html>

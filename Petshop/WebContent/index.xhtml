@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<link rel="preconnect" href="https://fonts.gstatic.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet"/>
+
+<style>
+
+*{
+	margin: 0 auto;
+	background: white;
+	font-family: "Roboto";
+}
+/*Menu*/
+#menu ul {
+    padding:0px;
+    margin:0px;
+    background-color:#EDEDED;
+    list-style:none;
+}
+
+#menu ul li { display: inline; }
+
+
+#menu ul li a {
+    padding: 2px 10px;
+    display: inline-block;
+
+    /* visual do link */
+    background-color:#EDEDED;
+    color: #333;
+    text-decoration: none;
+    border-bottom:3px solid #EDEDED;
+}
+
+#menu ul li a:hover {
+    background-color:#D6D6D6;
+    color: #6D6D6D;
+    border-bottom:3px solid #51d4db;
+}
+
+/*Inicializando Logo Index*/
+body {
+  align-items: center;
+
+}
+
+.c-loader {
+  margin-top: 200px;
+  margin-left: 700px;
+  animation: is-rotating 1s infinite;
+  border: 6px solid #e5e5e5;
+  border-radius: 50%;
+  border-top-color: #51d4db;
+  height: 50px;
+  width: 50px;
+  
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+  }
+}
+/*INICIALIZANDO IMAGEM INDEX*/
+.fade-in {
+  animation: fadeIn ease 10s;
+  -webkit-animation: fadeIn ease 10s;
+  -moz-animation: fadeIn ease 10s;
+  -o-animation: fadeIn ease 10s;
+  -ms-animation: fadeIn ease 10s;
+  
+  width: 70px;
+  height: 80px;
+  margin-top: 150px;
+  margin-left: 400px;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+</style>
+</h:head> 
+
+<body>
+<!-- Menu -->
+  <div id="menu">
+    <ul>
+        <li><a href="index.xhtml">Home</a></li>
+        <li><a href="cliente.xhtml">Cadastro Cliente</a></li>
+        <li><a href="animal.xhtml">Cadastro de Animais</a></li>
+        <li><a href="atendimento.xhtml">Registrar Atendimento</a></li>
+    </ul>
+</div>
+
+<!-- Div Class Loader -->
+<div class="c-loader"></div>
+
+<!-- Carregamento da Logo do PetShop -->
+<div class="fade-in">
+   <img src="https://image.freepik.com/vetores-gratis/logotipo-de-petshop-para-gatos-e-caes_9645-750.jpg"/>
+</div>
+
+
+<!-- Inicializando JavaScript para execução do Loader -->
+<script type="text/javascript">
+	document.addEventListener('readystatechange', function(e){
+		setTimeout(function() {
+			document.querySelector('.c-loader').style = 'display: none;'
+		}, 2000)
+
+		setTimeout(function(){
+			document.querySelector('.image-logo').style = 'display: none;'
+				}, 3000)
+	})
+</script>
+</body> 
+</html>
